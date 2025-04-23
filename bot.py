@@ -17,7 +17,7 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 credentials_json = os.environ["GOOGLE_CREDENTIALS"]
 creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(credentials_json), scope)
 client = gspread.authorize(creds)
-sheet = client.open("Catatan Dompet").sheet1  # Ganti dengan nama sheet kamu
+sheet = client.open("Catatan Pengeluaran").sheet1  # Ganti dengan nama sheet kamu
 
 # Logging
 logging.basicConfig(level=logging.INFO)
@@ -51,7 +51,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         jumlah_rp = f"Rp{jumlah:,}".replace(",", ".")
         total_rp = f"Rp{total:,}".replace(",", ".")
 
-        await update.message.reply_text(f"Tercatat: {keterangan} - {jumlah_rp}\\nTotal pengeluaran: {total_rp}")
+        await update.message.reply_text(f"Tercatat: {keterangan} - {jumlah_rp} \nTotal pengeluaran: {total_rp}")
     except Exception as e:
         await update.message.reply_text("Terjadi kesalahan saat memproses data.")
 
